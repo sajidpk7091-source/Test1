@@ -9,8 +9,7 @@ terraform {
 }
 
 provider "genesyscloud" {
-  # Credentials are provided automatically via the environment variables 
-  # defined in deploy.yml
+  aws_region = "ap-northeast-1" # FIXED: Direct initialization link for Japan region
 }
 
 # 1. Create a Routing Skill
