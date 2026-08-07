@@ -8,8 +8,21 @@ terraform {
   }
 }
 
+# Define the variable declarations so Terraform maps them from the pipeline parameters
+variable "oauth_id" {
+  type    = string
+  default = ""
+}
+
+variable "oauth_secret" {
+  type    = string
+  default = ""
+}
+
 provider "genesyscloud" {
-  aws_region = "ap-northeast-1" # FIXED: Direct initialization link for Japan region
+  oauthclient_id     = var.oauth_id != "" ? var.oauth_id : null
+  oauthclient_secret = var.oauth_secret != "" ? var.oauth_secret : null
+  aws_region         = "ap-northeast-1"
 }
 
 # 1. Create a Routing Skill
