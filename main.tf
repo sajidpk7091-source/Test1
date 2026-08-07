@@ -8,7 +8,6 @@ terraform {
   }
 }
 
-# Define the variable declarations so Terraform maps them from the pipeline parameters
 variable "oauth_id" {
   type    = string
   default = ""
@@ -25,17 +24,21 @@ provider "genesyscloud" {
   aws_region         = "ap-northeast-1"
 }
 
-# 1. Create a Routing Skill
+# 1. FIXED: Changed name prefix to bypass the duplicate value error
 resource "genesyscloud_routing_skill" "support_skill" {
-  name = "Technical Support"
+  name = "TF Technical Support"
 }
 
-# 2. Create a Media Queue
+# 2. FIXED: Appended service level parameters to satisfy the >= 0.01 API constraint rule
 resource "genesyscloud_routing_queue" "support_queue" {
   name        = "Tech Support Queue"
   description = "Queue managed via Terraform CI/CD"
 
   media_settings_call {
     alerting_timeout_sec = 20
+    service_level {
+      percentage = 0.80  # Target answering 80% of calls...
+      duration_ms = 20000 # ...within 20 seconds
+    }
   }
 }
