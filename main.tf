@@ -24,21 +24,21 @@ provider "genesyscloud" {
   aws_region         = "ap-northeast-1"
 }
 
-# 1. FIXED: Changed name prefix to bypass the duplicate value error
+# 1. Changed name prefix to bypass the duplicate value error
 resource "genesyscloud_routing_skill" "support_skill" {
   name = "TF Technical Support"
 }
 
-# 2. FIXED: Appended service level parameters to satisfy the >= 0.01 API constraint rule
+# 2. FIXED: Moved service level properties out of media block down to root level attributes
 resource "genesyscloud_routing_queue" "support_queue" {
-  name        = "Tech Support Queue"
-  description = "Queue managed via Terraform CI/CD"
+  name                        = "Tech Support Queue"
+  description                 = "Queue managed via Terraform CI/CD"
+  
+  # Root-level service constraint parameters matching Genesys schema rules
+  service_level_percentage    = 0.80   # Target answering 80% of calls...
+  service_level_duration_ms   = 20000  # ...within 20000 milliseconds (20 seconds)
 
   media_settings_call {
     alerting_timeout_sec = 20
-    service_level {
-      percentage = 0.80  # Target answering 80% of calls...
-      duration_ms = 20000 # ...within 20 seconds
-    }
   }
 }
