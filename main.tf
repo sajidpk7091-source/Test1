@@ -24,14 +24,14 @@ provider "genesyscloud" {
   aws_region         = "ap-northeast-1"
 }
 
-# 1. Unique skill name 
+# 1. FIXED: Appended a version suffix to ensure the skill label is completely unique
 resource "genesyscloud_routing_skill" "support_skill" {
-  name = "TF Technical Support"
+  name = "TF Technical Support v2"
 }
 
-# 2. Media Queue with Agent Member Mapped
+# 2. FIXED: Appended a version suffix to bypass the name-in-use constraint error
 resource "genesyscloud_routing_queue" "support_queue" {
-  name        = "Tech Support Queue"
+  name        = "Tech Support Queue v2"
   description = "Queue managed via Terraform CI/CD"
 
   media_settings_call {
@@ -40,9 +40,9 @@ resource "genesyscloud_routing_queue" "support_queue" {
     service_level_duration_ms = 20000  
   }
 
-  # FIXED: Mapped your agent to the queue statefully using their User ID string
+  # Maps your agent to this new unique queue block
   members {
     user_id  = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"
-    ring_num = 1 # Ring profile order priority level (First ring)
+    ring_num = 1 
   }
 }
