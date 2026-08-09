@@ -24,19 +24,25 @@ provider "genesyscloud" {
   aws_region         = "ap-northeast-1"
 }
 
-# 1. Unique skill name to prevent duplicate value errors
+# 1. Unique skill name 
 resource "genesyscloud_routing_skill" "support_skill" {
   name = "TF Technical Support"
 }
 
-# 2. FIXED: Placed service level parameters inside the media block as flat arguments
+# 2. Media Queue with Agent Member Mapped
 resource "genesyscloud_routing_queue" "support_queue" {
   name        = "Tech Support Queue"
   description = "Queue managed via Terraform CI/CD"
 
   media_settings_call {
     alerting_timeout_sec      = 20
-    service_level_percentage  = 0.80   # Target answering 80% of calls (satisfies the >= 0.01 API constraint)
-    service_level_duration_ms = 20000  # Within 20 seconds (20000 ms)
+    service_level_percentage  = 0.80   
+    service_level_duration_ms = 20000  
+  }
+
+  # FIXED: Mapped your agent to the queue statefully using their User ID string
+  members {
+    user_id  = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"
+    ring_num = 1 # Ring profile order priority level (First ring)
   }
 }
