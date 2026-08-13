@@ -67,6 +67,7 @@ resource "genesyscloud_routing_queue" "queue_1" {
   # Architect Flow & Prompt System Mappings
   queue_flow_id                 = "37c8d13f-a6d3-4e8b-b43d-c5bf9e0c795e"
   on_hold_prompt_id             = "7046e8b6-6404-437e-b62c-2ca86f2345ac"
+  whisper_prompt_id             = "f3e65012-b70c-4bb8-857d-92d72263270c"
 
   # Outbound CID Profiles
   calling_party_name            = "Test1"
@@ -78,7 +79,6 @@ resource "genesyscloud_routing_queue" "queue_1" {
     alerting_timeout_sec      = 8
     service_level_percentage  = 0.80
     service_level_duration_ms = 20000
-    whisper_prompt_id         = "f3e65012-b70c-4bb8-857d-92d72263270c"
   }
 
   # ---- Callback Configuration ----
@@ -95,7 +95,7 @@ resource "genesyscloud_routing_queue" "queue_1" {
     service_level_duration_ms = 20000
   }
 
-  # ---- Email Configuration (Long SLA duration) ----
+  # ---- Email Configuration ----
   media_settings_email {
     alerting_timeout_sec      = 300
     service_level_percentage  = 0.80
@@ -109,14 +109,14 @@ resource "genesyscloud_routing_queue" "queue_1" {
     service_level_duration_ms = 20000
   }
 
-  # Agent Member Mappings (Paste your 2 real agent UUID strings here)
-  members { 
-  user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255" 
-  ring_num = 1 
+  # FIXED: Expanded blocks cleanly onto separate lines with no semicolons
+  members {
+    user_id  = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"
+    ring_num = 1
   }
-  members { 
-  user_id = "c471d185-f4bf-4c16-a848-c470a039f624" 
-  ring_num = 1 
+  members {
+    user_id  = "c471d185-f4bf-4c16-a848-c470a039f624"
+    ring_num = 1
   }
 }
 
@@ -134,8 +134,11 @@ resource "genesyscloud_routing_queue" "queue_2" {
   skill_evaluation_method        = "ALL"
   acw_wrapup_prompt             = "MANDATORY_TIMEOUT"
   acw_timeout_ms                = 3000
+  
   queue_flow_id                 = "37c8d13f-a6d3-4e8b-b43d-c5bf9e0c795e"
   on_hold_prompt_id             = "7046e8b6-6404-437e-b62c-2ca86f2345ac"
+  whisper_prompt_id             = "f3e65012-b70c-4bb8-857d-92d72263270c"
+  
   calling_party_name            = "Test1"
   calling_party_number          = "+1234567"
 
@@ -144,7 +147,6 @@ resource "genesyscloud_routing_queue" "queue_2" {
     alerting_timeout_sec      = 8
     service_level_percentage  = 0.80
     service_level_duration_ms = 20000
-    whisper_prompt_id         = "f3e65012-b70c-4bb8-857d-92d72263270c"
   }
   media_settings_callback {
     alerting_timeout_sec      = 30
@@ -167,13 +169,14 @@ resource "genesyscloud_routing_queue" "queue_2" {
     service_level_duration_ms = 20000
   }
 
-  members { 
-  user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"
-  ring_num = 1 
+  # FIXED: Expanded blocks cleanly onto separate lines with no semicolons
+  members {
+    user_id  = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"
+    ring_num = 1
   }
-  members { 
-  user_id = "c471d185-f4bf-4c16-a848-c470a039f624"
-  ring_num = 1 
+  members {
+    user_id  = "c471d185-f4bf-4c16-a848-c470a039f624"
+    ring_num = 1
   }
 }
 
@@ -191,8 +194,11 @@ resource "genesyscloud_routing_queue" "queue_3" {
   skill_evaluation_method        = "ALL"
   acw_wrapup_prompt             = "MANDATORY_TIMEOUT"
   acw_timeout_ms                = 3000
+  
   queue_flow_id                 = "37c8d13f-a6d3-4e8b-b43d-c5bf9e0c795e"
   on_hold_prompt_id             = "7046e8b6-6404-437e-b62c-2ca86f2345ac"
+  whisper_prompt_id             = "f3e65012-b70c-4bb8-857d-92d72263270c"
+  
   calling_party_name            = "Test1"
   calling_party_number          = "+1234567"
 
@@ -201,7 +207,6 @@ resource "genesyscloud_routing_queue" "queue_3" {
     alerting_timeout_sec      = 8
     service_level_percentage  = 0.80
     service_level_duration_ms = 20000
-    whisper_prompt_id         = "f3e65012-b70c-4bb8-857d-92d72263270c"
   }
   media_settings_callback {
     alerting_timeout_sec      = 30
@@ -224,12 +229,13 @@ resource "genesyscloud_routing_queue" "queue_3" {
     service_level_duration_ms = 20000
   }
 
-  members { 
-  user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255" 
-  ring_num = 1 
+  # FIXED: Expanded blocks cleanly onto separate lines with no semicolons
+  members {
+    user_id  = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"
+    ring_num = 1
   }
-  members { 
-  user_id = "c471d185-f4bf-4c16-a848-c470a039f624" 
-  ring_num = 1 
+  members {
+    user_id  = "c471d185-f4bf-4c16-a848-c470a039f624"
+    ring_num = 1
   }
 }
