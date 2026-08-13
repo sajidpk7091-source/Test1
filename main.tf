@@ -110,8 +110,14 @@ resource "genesyscloud_routing_queue" "queue_1" {
   }
 
   # Agent Member Mappings (Paste your 2 real agent UUID strings here)
-  members { user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"; ring_num = 1 }
-  members { user_id = "c471d185-f4bf-4c16-a848-c470a039f624"; ring_num = 1 }
+  members { 
+  user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255" 
+  ring_num = 1 
+  }
+  members { 
+  user_id = "c471d185-f4bf-4c16-a848-c470a039f624" 
+  ring_num = 1 
+  }
 }
 
 # ---- QUEUE 2: Billing ----
@@ -161,8 +167,14 @@ resource "genesyscloud_routing_queue" "queue_2" {
     service_level_duration_ms = 20000
   }
 
-  members { user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"; ring_num = 1 }
-  members { user_id = "c471d185-f4bf-4c16-a848-c470a039f624"; ring_num = 1 }
+  members { 
+  user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"
+  ring_num = 1 
+  }
+  members { 
+  user_id = "c471d185-f4bf-4c16-a848-c470a039f624"
+  ring_num = 1 
+  }
 }
 
 # ---- QUEUE 3: Retention ----
@@ -212,6 +224,12 @@ resource "genesyscloud_routing_queue" "queue_3" {
     service_level_duration_ms = 20000
   }
 
-  members { user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255"; ring_num = 1 }
-  members { user_id = "c471d185-f4bf-4c16-a848-c470a039f624"; ring_num = 1 }
+  members { 
+  user_id = "06856e49-d2b7-44db-8bf9-e7cd5d5bf255" 
+  ring_num = 1 
+  }
+  members { 
+  user_id = "c471d185-f4bf-4c16-a848-c470a039f624" 
+  ring_num = 1 
+  }
 }
